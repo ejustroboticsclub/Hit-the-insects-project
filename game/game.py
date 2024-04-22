@@ -1,5 +1,6 @@
 import pygame
 import random
+import time
 
 # Initialize Pygame
 pygame.init()
@@ -13,7 +14,7 @@ WINDOW = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE
 pygame.display.set_caption("Hit the Insect - One Player")
 
 # Load background image
-BACKGROUND_FILE = "E:\\robotics club\\Hit-the-insects-project\\garden.png"  # file pathc
+BACKGROUND_FILE = "E:\\robotics club\\Hit-the-insects-project\\garden.png"  # file path
 BACKGROUND_IMAGE = pygame.image.load(BACKGROUND_FILE)
 BACKGROUND_IMAGE = pygame.transform.scale(BACKGROUND_IMAGE, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -53,6 +54,7 @@ class HitTheInsectGame:
         self.player_score = 0
         self.insects = []
         self.game_over = False  # Flag to indicate game over state
+        self.round_end_time = None  # Time when the round ends
 
     def spawn_insect(self):
         if not self.game_over:
@@ -87,33 +89,6 @@ class HitTheInsectGame:
             final_score_text = FONT.render(f"Final Score: {self.player_score}", True, (255, 255, 255))
             surface.blit(final_score_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 40))
 
-            # Draw new game button
-            new_game_button = Button("New Game", (SCREEN_WIDTH // 2 - 60, SCREEN_HEIGHT // 2 + 20))
-            new_game_button.draw(surface)
-
-            # Check if the new game button is clicked
-            if new_game_button.is_clicked():
-                self.__init__()  # Reset the game state
-
-
-class Button:
-    def __init__(self, text, position):
-        self.text = text
-        self.position = position
-        self.width = 120
-        self.height = 40
-        self.rect = pygame.Rect(position, (self.width, self.height))
-
-    def draw(self, surface):
-        pygame.draw.rect(surface, (0, 255, 0), self.rect)
-        text_surface = FONT.render(self.text, True, (255, 255, 255))
-        text_rect = text_surface.get_rect(center=self.rect.center)
-        surface.blit(text_surface, text_rect)
-
-    def is_clicked(self):
-        mouse_pos = pygame.mouse.get_pos()
-        return self.rect.collidepoint(mouse_pos)
-
 def main():
     game = HitTheInsectGame()
 
@@ -129,6 +104,14 @@ def main():
     while running:
         current_time = pygame.time.get_ticks()
         elapsed_time = (current_time - round_start_time) // 1000
+
+        if game.game_over and game.round_end_time is None:
+            game.round_end_time = current_time + 20 * 1000  # Set the end time of the round
+
+        if game.game_over and current_time >= game.round_end_time:
+            game = HitTheInsectGame()  # Restart the game
+            round_start_time = pygame.time.get_ticks()  # Reset round start time
+            continue
 
         if elapsed_time >= ROUND_DURATION:
             if not game.game_over:
