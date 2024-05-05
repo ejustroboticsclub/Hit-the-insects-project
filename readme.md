@@ -86,15 +86,15 @@ This document outlines the implementation of the "Hit the Insect" game with two 
 
 - **Interactive Gameplay**:
   - Both versions of the game offer interactive gameplay experiences where players can hit virtual insects using either the detected ball (YOLO version) or body movements/gestures (MediaPipe version).
+  ## Game Modes:
 
-- **Dynamic Difficulty**:
-  - The game's difficulty level may dynamically adjust based on factors such as player performance, ensuring an engaging and challenging experience for players of all skill levels.
+    - **Single Player Mode**:
+      - Players can enjoy the game individually, competing against computer-controlled opponents or challenges.
+      - Single-player mode offers a solo gaming experience, allowing players to focus on completing objectives or achieving high scores.
 
-- **Scoring and Progression**:
-  - A scoring system and progression mechanics will be implemented to track player performance and advancement through different levels or stages of the game.
-
-- **Customization Options**:
-  - Players may have options to customize game settings, controls, or difficulty preferences to tailor the gameplay experience to their preferences.
+    - **Multiplayer Mode**:
+      - The game also features a multiplayer mode where multiple players can compete against each other in real-time.
+      - Multiplayer mode enables social interaction and competition among players, fostering a dynamic and engaging gaming experience.
 
 ## Project Scope:
 
