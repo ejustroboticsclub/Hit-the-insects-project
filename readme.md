@@ -66,21 +66,20 @@ This document outlines the implementation of the "Hit the Insect" game with two 
 - The YOLO model identifies the position and size of the ball, allowing players to interact with it within the game.
 - The distance between the camera and the ball is calculated based on the detected position, enabling players to accurately hit the ball using in-game tools or methods.
 
-## MediaPipe Pose Estimation Version:
+## Contours Version:
 
-- Alternatively, players can choose to play the game using pose estimation with MediaPipe, offering a different gameplay experience.
-- In this version, MediaPipe's pose estimation algorithm is employed to track the player's body movements or gestures within the game environment.
-- Players can use their body movements or gestures to interact with virtual objects or hit the insects, adding a unique and immersive aspect to the gameplay.
-
+- Alternatively, There is another version using the property of HSV values to find contours of the ball.
+- After detecting the ball it replicates the click on the screen after specific delay for providing more realistic click.
 ## Technical Implementation:
 
 - **YOLO Model Integration**:
   - The YOLO object detection model will be integrated into the game using relevant libraries or frameworks, such as OpenCV, to perform real-time object detection.
   - The model's output, including the detected ball's position and size, will be processed within the game logic to enable interaction with the ball.
-
-- **MediaPipe Pose Estimation Integration**:
-  - MediaPipe's pose estimation algorithm will be integrated into the game to track the player's body movements or gestures.
-  - Pose estimation data will be processed within the game logic to interpret player actions and enable interaction with virtual objects or game elements.
+- **Contours Version Integration**:
+  - In an alternative implementation, the game can utilize the property of HSV values to find contours of the ball within the game environment.
+  - The game logic will process the detected contours to identify the position and size of the ball, enabling interaction with the ball within the game.
+  - After detecting the ball using contours, the game will replicate a click on the screen after a specific delay, providing a more realistic interaction experience for the players.
+  - This method offers an alternative approach to ball detection, leveraging color-based segmentation techniques, which can complement the YOLO model version or serve as a standalone implementation depending on the game's       requirements and constraints.
 
 ## Game Features:
 
@@ -92,7 +91,7 @@ This document outlines the implementation of the "Hit the Insect" game with two 
       - Players can enjoy the game individually, competing against computer-controlled opponents or challenges.
       - Single-player mode offers a solo gaming experience, allowing players to focus on completing objectives or achieving high scores.
 
-    - **Multiplayer Mode**:
+    - **Multiplayer Mode** (will be implemented soon):
       - The game also features a multiplayer mode where multiple players can compete against each other in real-time.
       - Multiplayer mode enables social interaction and competition among players, fostering a dynamic and engaging gaming experience.
 
