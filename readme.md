@@ -72,15 +72,18 @@ This document outlines the implementation of the "Hit the Insect" game with two 
 - After detecting the ball it replicates the click on the screen after specific delay for providing more realistic click.
 ## Technical Implementation:
 
-- **YOLO Model Integration**:
+- **YOLO Model**:
   - The YOLO object detection model will be integrated into the game using relevant libraries or frameworks, such as OpenCV, to perform real-time object detection.
   - The model's output, including the detected ball's position and size, will be processed within the game logic to enable interaction with the ball.
-- **Contours Version Integration**:
+- **Contours Version**:
   - In an alternative implementation, the game can utilize the property of HSV values to find contours of the ball within the game environment.
   - The game logic will process the detected contours to identify the position and size of the ball, enabling interaction with the ball within the game.
   - After detecting the ball using contours, the game will replicate a click on the screen after a specific delay, providing a more realistic interaction experience for the players.
   - This method offers an alternative approach to ball detection, leveraging color-based segmentation techniques, which can complement the YOLO model version or serve as a standalone implementation depending on the game's       requirements and constraints.
-
+- **Pose Estimation**:
+  - Uses MediaPipe for hand detection.
+  - Controls mouse movements based on the index finger position with PyAutoGUI.
+  - Simulates a mouse click when the index finger approaches certain threshold.
 ## Game Features:
 
 - **Interactive Gameplay**:
